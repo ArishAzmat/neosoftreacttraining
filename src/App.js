@@ -21,7 +21,6 @@ function App() {
   let [details, setDetails] = useState({}) 
   let [cakes, setCakes] = useState({})
   let [searchCake, setSearchCake] = useState({})
-  console.log(details)
     axios({
       url:"http://apibyashu.herokuapp.com/api/allcakes",
       method:"get", 
