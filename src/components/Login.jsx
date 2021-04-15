@@ -1,4 +1,5 @@
 import {useState,useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import axios from "axios";
 function Login (props){
     
@@ -33,23 +34,31 @@ function Login (props){
     }
     let login =()=>{
         console.log(user)
-       if(!user.email && !user.password && !user.name){
+       if(!user.email || !user.password || !user.name){
         setMessage({
-            error: "Please enter valid credentials"
+            error: "Please Fill all required fields"
         }); 
        }
        else{
-        setMessage({
-            success: "Login Successfull"
-        });
         axios({
             url:"http://apibyashu.herokuapp.com/api/login",
             method:"post",
             data:user,
         }).then((response)=>{
-            console.log("success")
+            console.log("success: ",response)
+            if(response.data.token){
+            setMessage({
+                success: "Login Successfull"
+            });
          props.set(true)
          props.userName(user.name)
+        }
+        else{
+            // console.log("asdsad");
+            setMessage({
+                error: "Invalid Credentials"
+            }); 
+        }
         },(error)=>{
             console.log(error)
         })
@@ -59,18 +68,19 @@ function Login (props){
     }
    
     return ( 
-       <div className="col-md-6">
+       <center>
             
-       <form >
+       <form style={{width: "500px"}}>
           <h3>Login</h3>
          <input placeholder="Enter Your Name" className="form-control" type="text" onChange={getName}/> <br/>
          <input placeholder="Enter Your Name" className="form-control" type="text" onChange={getEmail}/> <br/>
           <input placeholder="Enter Your Password" className="form-control" type="text" onChange={getPassword}/> 
         </form>
-            {message.success && <span className="alert alert-success">{message.success}</span>}
-            {message.error && <span className="alert alert-danger">{message.error}</span>}
+           <Link to="signup"> <a href="#">Don't have an account Signup</a></Link>
          <button className="btn btn-secondary m-3" onClick={login}>Login</button>
-     </div>);
+         {message.success && <span className="alert alert-success">{message.success}</span>}
+            {message.error && <span className="alert alert-danger">{message.error}</span>}
+     </center>);
 }
 
 export default Login;

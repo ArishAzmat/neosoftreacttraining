@@ -65,8 +65,8 @@ class Signup extends Component{
     }
     render(){
         return (
-            <div className="col-md-6"> 
-              <form >
+            <center> 
+             <form style={{width: "500px"}}>
                   <h3>Register</h3>
                   <input placeholder="Enter Your Name" className="form-control" type="text" onChange={this.getName}/> <br/>
                 <input placeholder="Enter Your Name" className="form-control" type="text" onChange={this.getEmail}/>
@@ -76,7 +76,7 @@ class Signup extends Component{
                </form>
                <span  className="alert-danger">{this.state.errorMessage}</span> 
                 <button className="btn btn-secondary m-3" onClick={this.register}>register</button>
-            </div>
+            </center>
         )
     }
 }

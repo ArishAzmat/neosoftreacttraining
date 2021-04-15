@@ -1,18 +1,6 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -23,16 +11,21 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.thiscard {
+  color: rgb(129, 81, 81);
+  padding: 30px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.thisimg {
+  transition: 350ms;
+}
+.thisimg:hover {
+  transform: scale(1.1);
+}
+.singleimage {
+  margin-top: 10px;
+  transition: 350ms;
+}
+.singleimage:hover {
+  transform: scale(1.8);
+  margin-top: 100px;
 }

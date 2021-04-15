@@ -1,26 +1,15 @@
 import {useState} from 'react';
 import axios from "axios";
+import {Link} from 'react-router-dom';
 function Header (props){ 
   var [search, setSearch] = useState('') 
   let searchq = (event)=>{ 
       setSearch(event.target.value);
-          console.log(event.target.value); 
+          console.log("yeeee",event.target.value); 
       }
-      let searchdata = (event)=>{
-        event.preventDefault();
-        console.log("https://apibyashu.herokuapp.com/api/searchcakes?q=chocolate"+search)
-        axios({
-          url:"https://apibyashu.herokuapp.com/api/searchcakes?q="+search,
-          method:"get", 
-      }).then((response)=>{
-          console.log(response)
-          props.getSearchData(response.data.data)
-      // props.set(true)
-      // props.userName(user.name)
-      },(error)=>{
-          console.log(error)
-      })
-      }
+      // let searchdata = (event)=>{
+      
+      // }
   let logout = ()=>{
     props.changeLogout(false)
     
@@ -39,7 +28,7 @@ function Header (props){
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+              <Link to="/"><a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a></Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">Link</a>
@@ -61,11 +50,11 @@ function Header (props){
           </ul>
           <form className="form-inline my-2 my-lg-0">
             <input className="form-control mr-sm-2" type="search" onChange={searchq} placeholder="Search" aria-label="Search"/>
-            <button onClick={searchdata} className="btn btn-outline-success">Search</button>
+            <Link to={`/search/${search}`}><button className="btn btn-outline-success">Search</button></Link>
           </form>
           {props.checkLogin ? 
           <button className="btn btn-success"   onClick={logout}>Logout</button>:
-          <button className="btn btn-primary"  onClick={login}>Login</button>
+          <Link to="/login"><button className="btn btn-primary"  onClick={login}>Login</button></Link>
          }
         </div>
       </nav>);
