@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import axios from "axios";
 class Signup extends Component{
-    constructor(){
+    constructor(props){
         super()
         this.state = {
             count : 0,  
@@ -37,10 +37,10 @@ class Signup extends Component{
     //    }
     }
     register = ()=>{   
-        console.log(this.user)
+        //console.log(this.user)
         if(!this.user.email || !this.user.password){
             this.setState({
-                errorMessage : 'Please fill all then details'
+                errorMessage : 'Please fill all details'
             })
         }
         // else if (this.user.email !== 'some@email.com' && this.user.password !== '123' ){
@@ -57,8 +57,25 @@ class Signup extends Component{
                 method:"post",
                 data:this.user,
             }).then((response)=>{ 
+                if(response.data.message == "User Registered"){
+                    this.setState({
+                        Message :"Registered Successfully Please Check your Email",
+                        errorMessage : false
+                    })
+                    setTimeout(()=>{
+                        this.props.history.push('/')
+                    },2000)
+                   
+                }
+                else{
+                    this.setState({
+                        Message : false,
+                        errorMessage : response.data.message
+                    })
+                }
+                //console.log(response)
             },(error)=>{
-                console.log(error)
+                //console.log(error)
             })
         }
         
@@ -74,7 +91,9 @@ class Signup extends Component{
                  <input placeholder="Enter Your Password" className="form-control" type="text" onChange={this.getPassword}/>
                  <span  className="alert">{this.state.errorPassword}</span>
                </form>
-               <span  className="alert-danger">{this.state.errorMessage}</span> 
+               {this.state.errorMessage && <span  className="alert-danger">{this.state.errorMessage}</span> }
+               
+               {this.state.Message && <span  className="alert-success">{this.state.Message}</span> }
                 <button className="btn btn-secondary m-3" onClick={this.register}>register</button>
             </center>
         )
