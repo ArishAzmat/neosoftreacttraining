@@ -19,7 +19,7 @@ function App() {
   
   return (
     <div className="App">
-      <Router>
+      <Router >
       <Header getSearchData={setSearchCake} userName={name} checkLogin={login} changeLogout={setlogin,setlogin}/>
         <Route exact path='/' component={Home}></Route>
         <Route exact path='/signup' component={Signup}></Route>

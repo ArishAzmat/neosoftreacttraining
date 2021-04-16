@@ -53,7 +53,7 @@ class Signup extends Component{
                 errorMessage : ''
             })
             axios({
-                url:"http://apibyashu.herokuapp.com/api/register",
+                url:"https://apibyashu.herokuapp.com/api/register",
                 method:"post",
                 data:this.user,
             }).then((response)=>{ 
@@ -69,7 +69,7 @@ class Signup extends Component{
              <form style={{width: "500px"}}>
                   <h3>Register</h3>
                   <input placeholder="Enter Your Name" className="form-control" type="text" onChange={this.getName}/> <br/>
-                <input placeholder="Enter Your Name" className="form-control" type="text" onChange={this.getEmail}/>
+                <input placeholder="Enter Your Email" className="form-control" type="text" onChange={this.getEmail}/>
                 <br/>
                  <input placeholder="Enter Your Password" className="form-control" type="text" onChange={this.getPassword}/>
                  <span  className="alert">{this.state.errorPassword}</span>

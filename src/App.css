@@ -27,6 +27,6 @@
   width: 400px;
 }
 .singleimage:hover {
-  transform: scale(1.8);
+  transform: scale(1.5);
   margin-top: 100px;
 }

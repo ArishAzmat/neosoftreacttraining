@@ -41,7 +41,7 @@ function Login (props){
        }
        else{
         axios({
-            url:"http://apibyashu.herokuapp.com/api/login",
+            url:"https://apibyashu.herokuapp.com/api/login",
             method:"post",
             data:user,
         }).then((response)=>{
@@ -74,7 +74,7 @@ function Login (props){
        <form style={{width: "500px"}}>
           <h3>Login</h3>
          <input placeholder="Enter Your Name" className="form-control" type="text" onChange={getName}/> <br/>
-         <input placeholder="Enter Your Name" className="form-control" type="text" onChange={getEmail}/> <br/>
+         <input placeholder="Enter Your Email" className="form-control" type="text" onChange={getEmail}/> <br/>
           <input placeholder="Enter Your Password" className="form-control" type="text" onChange={getPassword}/> 
         </form>
            <Link to="signup"> <a href="#">Don't have an account Signup</a></Link>
