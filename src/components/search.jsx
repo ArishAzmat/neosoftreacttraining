@@ -5,11 +5,11 @@ import {Link} from 'react-router-dom';
 function Search(props){
   let [result, setResult]  = useState({})
   let search = useParams()
- // console.log("aaa",search)
+ console.log("aaa",props.location.search)
         useEffect(()=>{
           console.log("aaa",search.searchid)
           axios({
-            url:"https://apibyashu.herokuapp.com/api/searchcakes?q="+search.searchid,
+            url:"https://apibyashu.herokuapp.com/api/searchcakes"+props.location.search,
             method:"get", 
         }).then((response)=>{
             console.log("responese:",response)
@@ -17,7 +17,7 @@ function Search(props){
         },(error)=>{
             console.log(error)
         })
-        },[search])
+        },[props.location.search])
         return (  
                 <div className="row">
                 {result?.length> 0 && result.map((each, index)=>{

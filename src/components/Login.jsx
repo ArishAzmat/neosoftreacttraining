@@ -1,5 +1,5 @@
 import {useState,useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import axios from "axios";
 function Login (props){
     
@@ -50,6 +50,7 @@ function Login (props){
             setMessage({
                 success: "Login Successfull"
             });
+            props.history.push('/')
          props.set(true)
          props.userName(user.name)
         }
@@ -83,4 +84,4 @@ function Login (props){
      </center>);
 }
 
-export default Login;
+export default withRouter(Login);

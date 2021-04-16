@@ -20,7 +20,7 @@ function Header (props){
     console.log(props)
   }
         return ( <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">Hello, {props.userName}</a>
+       <Link to="/">  <a className="navbar-brand" href="#">Justice CakeShop, {props.userName}</a></Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -50,7 +50,7 @@ function Header (props){
           </ul>
           <form className="form-inline my-2 my-lg-0">
             <input className="form-control mr-sm-2" type="search" onChange={searchq} placeholder="Search" aria-label="Search"/>
-            <Link to={`/search/${search}`}><button className="btn btn-outline-success">Search</button></Link>
+            <Link to={`/search?q=${search}`}><button className="btn btn-outline-success">Search</button></Link>
           </form>
           {props.checkLogin ? 
           <button className="btn btn-success"   onClick={logout}>Logout</button>:

@@ -23,9 +23,9 @@ function App() {
       <Header getSearchData={setSearchCake} userName={name} checkLogin={login} changeLogout={setlogin,setlogin}/>
         <Route exact path='/' component={Home}></Route>
         <Route exact path='/signup' component={Signup}></Route>
-        <Route exact path='/login'><Login userName={setName} checkLogin={login} set={setlogin}/></Route>
+        <Route exact path='/login' ><Login userName={setName} checkLogin={login} set={setlogin}/></Route>
         <Route exact path='/cake/:cakeid'><CakeDetails /></Route>
-        <Route exact path='/search/:searchid'><Search /></Route>
+        <Route exact path='/search' component={Search}></Route>
       </Router>
           {/* <Login userName={setName} checkLogin={login} set={setlogin}/></Router> */}
     </div>

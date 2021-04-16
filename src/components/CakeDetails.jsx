@@ -6,7 +6,7 @@ function CakeDetails() {
   const params = useParams();
   let [details, setDetails] = useState({}) 
   useEffect(()=>{
-    let cakeapi = "http://apibyashu.herokuapp.com/api/cake/"+params.cakeid
+    let cakeapi = "https://apibyashu.herokuapp.com/api/cake/"+params.cakeid
     axios({
       method:'get',
       url:cakeapi,
