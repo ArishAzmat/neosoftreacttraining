@@ -15,7 +15,7 @@ function App() {
   let [cakes, setCakes] = useState({})
   let [searchCake, setSearchCake] = useState({})
   let [login, setlogin] = useState(false);
-  let [name, setName] = useState('Anonymous User');
+  let [name, setName] = useState('');
   
   return (
     <div className="App">

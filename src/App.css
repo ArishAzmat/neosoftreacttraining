@@ -24,6 +24,7 @@
 .singleimage {
   margin-top: 10px;
   transition: 350ms;
+  width: 400px;
 }
 .singleimage:hover {
   transform: scale(1.8);

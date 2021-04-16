@@ -13,7 +13,6 @@ function Home(params) {
   let [cakes, setCakes] = useState({})
   let [searchCake, setSearchCake] = useState({})
   let [login, setlogin] = useState(false);
-  let [name, setName] = useState('Anonymous User');
   useEffect(() => {
     axios({
       url: "https://apibyashu.herokuapp.com/api/allcakes",
@@ -33,6 +32,7 @@ function Home(params) {
       </div>
       <Slider />
       {/* <CakeDetails cakeDetails={details}/> */}
+      <h1>All Cakes</h1>
       <div className="row">
         {cakes?.length > 0 && cakes.map((each, index) => {
           return (<Card data={each} key={index} />)
