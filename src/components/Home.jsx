@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import Search from './search';
 function Home(params) {
-  console.log(params)
+  // console.log(params)
   let [cakes, setCakes] = useState({})
   let [searchCake, setSearchCake] = useState({})
   let [login, setlogin] = useState(false);
@@ -19,7 +19,7 @@ function Home(params) {
       method: "get",
     }).then((response) => {
       setCakes(response.data.data)
-      console.log(response.data.data)
+      // console.log(response.data.data)
     }, (error) => {
       console.log(error)
     })
@@ -32,7 +32,7 @@ function Home(params) {
       </div>
       <Slider />
       {/* <CakeDetails cakeDetails={details}/> */}
-      <h1>All Cakes</h1>
+      <h1>Shop</h1>
       <div className="row">
         {cakes?.length > 0 && cakes.map((each, index) => {
           return (<Card data={each} key={index} />)

@@ -57,7 +57,7 @@ class Signup extends Component{
                 method:"post",
                 data:this.user,
             }).then((response)=>{ 
-                if(response.data.message == "User Registered"){
+                if(response.data.message === "User Registered"){
                     this.setState({
                         Message :"Registered Successfully Please Check your Email",
                         errorMessage : false

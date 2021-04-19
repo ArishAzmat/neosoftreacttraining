@@ -4,10 +4,10 @@ import { useParams } from "react-router";
 import {Link} from 'react-router-dom';
 function Search(props){
   let [result, setResult]  = useState({})
-  let search = useParams()
- console.log("aaa",props.location.search)
+  // let search = useParams()
+//  console.log("aaa",props.location.search)
         useEffect(()=>{
-          console.log("aaa",search.searchid)
+          // console.log("aaa",search.searchid)
           axios({
             url:"https://apibyashu.herokuapp.com/api/searchcakes"+props.location.search,
             method:"get", 

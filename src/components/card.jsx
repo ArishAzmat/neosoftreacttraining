@@ -10,6 +10,7 @@ function Card (props) {
   //     console.log(error)
   // })
     }
+    
 
         return ( 
         <div className="card thiscard" style={{width:"17rem"}}>
@@ -18,8 +19,7 @@ function Card (props) {
               </Link> 
         
         <div className="card-body">
-         
-        <h5 className="card-title">{props.data.name}</h5> 
+        <h5 className="card-title">{props.data.name}</h5>  
         </div>  </div> );
     }
  

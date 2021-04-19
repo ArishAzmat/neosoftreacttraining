@@ -1,19 +1,20 @@
 import {useState,useEffect} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import axios from "axios";
+import { connect } from 'react-redux';
 function Login (props){
     
     var user = {}
     var [user, setUser] = useState({})
     var [message, setMessage] = useState({})
-    let getName = (event)=>{ 
-        setUser({
-            ...user,
-                name : event.target.value
-            });
-            // console.log(event.target.value);
-            user.name=event.target.value;
-        }
+    // let getName = (event)=>{ 
+    //     setUser({
+    //         ...user,
+    //             name : event.target.value
+    //         });
+    //         // console.log(event.target.value);
+    //         user.name=event.target.value;
+    //     }
    let getEmail = (event)=>{ 
         setUser({
             ...user,
@@ -34,7 +35,7 @@ function Login (props){
     }
     let login =()=>{
         console.log(user)
-       if(!user.email || !user.password || !user.name){
+       if(!user.email || !user.password){
         setMessage({
             error: "Please Fill all required fields"
         }); 
@@ -47,6 +48,11 @@ function Login (props){
         }).then((response)=>{
             console.log("success: ",response)
             if(response.data.token){
+                localStorage.token = response.data.token
+                props.dispatch({
+                    type:"LOGIN",
+                    payload:response.data
+                })
             setMessage({
                 success: "Login Successfull"
             });
@@ -73,7 +79,7 @@ function Login (props){
             
        <form style={{width: "500px"}}>
           <h3>Login</h3>
-         <input placeholder="Enter Your Name" className="form-control" type="text" onChange={getName}/> <br/>
+         {/* <input placeholder="Enter Your Name" className="form-control" type="text" onChange={getName}/> <br/> */}
          <input placeholder="Enter Your Email" className="form-control" type="text" onChange={getEmail}/> <br/>
           <input placeholder="Enter Your Password" className="form-control" type="text" onChange={getPassword}/> 
         </form>
@@ -83,5 +89,9 @@ function Login (props){
             {message.error && <span className="alert alert-danger">{message.error}</span>}
      </center>);
 }
+Login =  withRouter(Login)
+export default connect(function (state,props) {
+        return {
 
-export default withRouter(Login);
+        }
+})(Login);

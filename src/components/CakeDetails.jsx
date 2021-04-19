@@ -1,22 +1,40 @@
 import { useParams } from "react-router";
 import {useState, useEffect} from 'react';
-import axios from "axios";
-console.log("hello")
-function CakeDetails() {
+import axios from "axios"; 
+import { connect } from "react-redux";
+function CakeDetails(props) {
+  let addtocart = (data) =>{ 
+    axios({
+      method:'post',
+      url:"https://apibyashu.herokuapp.com/api/addcaketocart",
+      headers:{authtoken:localStorage.token},
+      data:{name:data.name,image:data.image,cakeid:data.cakeid,price:data.price,weight:data.weight}
+    }).then((response)=>{ 
+      if(response.data.message == "Added to cart"){
+        console.log(console.log("....cartdata: " ,response.data.data.cakeid))
+        props.dispatch({
+            type:"CART",
+            payload:response.data.data.cakeid
+        })
+      }
+    },(error)=>{
+      console.log("addcart error",error)
+    })
+}
   const params = useParams();
   let [details, setDetails] = useState({}) 
-  useEffect(()=>{
+  // useEffect(()=>{
     let cakeapi = "https://apibyashu.herokuapp.com/api/cake/"+params.cakeid
     axios({
       method:'get',
       url:cakeapi,
     }).then((response)=>{
       setDetails(response.data.data)
-      console.log(response.data.data)
+      // console.log(response.data.data)
     },(error)=>{
       console.log("error",error)
     })
-  },[])
+  // },[])
     return (
         <div className="jumbotron">
           <div className="row">
@@ -33,10 +51,11 @@ function CakeDetails() {
         <p><b>Eggless:</b>{details.eggless === true? 'Yes' : 'No'} </p>
         <p><b>ratings:</b>{details.ratings} </p>
         <p><b>flavour:</b>{details.flavour} </p>
+        <button onClick={()=>addtocart(details)} className="btn btn-warning">Add to Cart</button>
             </div>
           </div>
        
       </div>)
 }
 
-export default CakeDetails
+export default connect()(CakeDetails)
