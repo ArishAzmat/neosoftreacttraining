@@ -14,7 +14,7 @@ function Home(params) {
   let [searchCake, setSearchCake] = useState({})
   let [login, setlogin] = useState(false);
   useEffect(() => {
-    axios({
+   axios({
       url: "https://apibyashu.herokuapp.com/api/allcakes",
       method: "get",
     }).then((response) => {
@@ -22,7 +22,7 @@ function Home(params) {
       // console.log(response.data.data)
     }, (error) => {
       console.log(error)
-    })
+    }) 
   }, [])
   return (
     <div className="App">

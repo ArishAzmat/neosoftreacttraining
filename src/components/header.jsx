@@ -3,22 +3,28 @@ import axios from "axios";
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 function Header (props){ 
+  // console.log(props.updatecart)
   useEffect(()=>{
     axios({
         method:'post',
         url:"https://apibyashu.herokuapp.com/api/cakecart",
         headers:{authtoken:localStorage.token},
       }).then((response)=>{ 
+        console.log("API HIT: Cart success")
         props.dispatch({
           type:"CART",
           payload:response.data.data
+        })
+        props.dispatch({
+          type:"UPDATE-CART",
+          payload:true
         })
         // setCart(response.data.data)
         // setRemoved(false)
       },(error)=>{
         console.log("error",error)
       })
-   },[props])
+   },[props.updatecart])
   var [search, setSearch] = useState('') 
   let searchq = (event)=>{ 
       setSearch(event.target.value);
@@ -31,6 +37,10 @@ function Header (props){
     props.dispatch({
         type:"LOGOUT",
     })
+    props.dispatch({
+      type:"CART",
+      payload:null
+  })
     
     console.log(props)
   }
@@ -71,7 +81,7 @@ function Header (props){
             <Link to={`/search?q=${search}`}><button className="btn btn-outline-success">Search</button></Link>
           </form>
           {props.loginstatus ? 
-          <button className="btn btn-success"   onClick={logout}>Logout</button>:
+          <button className="btn btn-danger"   onClick={logout}>Logout</button>:
           <Link to="/login"><button className="btn btn-primary"  onClick={islogin}>Login</button></Link>
          }
         </div>
@@ -80,10 +90,11 @@ function Header (props){
 }
  
 export default connect(function(state,props){
-  console.log("state initially",state)
+  // console.log("state initially",state)
   return {
     user:state?.user?.name,
     loginstatus:state?.isLoggedin,
-    cart:state?.cart
+    cart:state?.cart,
+    updatecart:state?.updatecart
   }
 })(Header);

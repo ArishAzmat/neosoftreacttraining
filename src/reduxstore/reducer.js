@@ -16,9 +16,21 @@ var demo = function(state = null, action){
             return state
         } 
         case "CART":{
-            console.log("here we have to write logic for cart")
+            // console.log("redux cart")
             state = {...state}   
             state['cart'] = {data:action.payload}
+            return state
+        } 
+        case "UPDATE-CART":{
+            // console.log("redux update cart",state.updatecart)
+            state = {...state}   
+            state['updatecart'] = action.payload
+            return state
+        } 
+        case "SESSION":{
+            // console.log("redux Session")
+            state = {...state}   
+            state['session'] = action.payload
             return state
         } 
 

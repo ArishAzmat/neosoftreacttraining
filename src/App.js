@@ -22,12 +22,19 @@ if(localStorage.token){
       authtoken:localStorage.token
     }
   }).then((response)=>{ 
-    console.log(response)
-    mart.dispatch({
-      type:"LOGIN",
-      payload:response.data.data
-  })
+    console.log("API HIT: User Details")
+    if(response.data.data){
+      mart.dispatch({
+        type:"LOGIN",
+        payload:response.data.data
+    })
+    }
+    else{
+      localStorage.removeItem('token');
+    }
+   
   },(error)=>{
+    localStorage.removeItem('token');
     console.log("get user details api. Error: ",error)
   })
 }
@@ -49,7 +56,7 @@ function App() {
         <Route exact path='/cake/:cakeid'><CakeDetails /></Route>
         <Route exact path='/search' component={Search}></Route>
         <Route exact path='/cart' component={Cart}></Route>
-        <Route exact path='/checkout' component={Checkout}></Route> 
+        <Route path='/checkout' component={Checkout}></Route> 
       </Router>
           {/* <Login userName={setName} checkLogin={login} set={setlogin}/></Router> */}
     </div>

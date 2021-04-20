@@ -19,19 +19,15 @@ function Login (props){
         setUser({
             ...user,
                 email : event.target.value
-            });
-            // console.log(event.target.value);
-            user.email=event.target.value;
-            console.log(user,'ss')
+            }); 
+            user.email=event.target.value; 
         }
        
     let getPassword = (event)=>{ 
          setUser({
              ...user,
             password :  event.target.value
-        })
-        // console.log(event.target.value);
-        console.log(user,'pas')
+        }) 
     }
     let login =()=>{
         console.log(user)
@@ -46,8 +42,8 @@ function Login (props){
             method:"post",
             data:user,
         }).then((response)=>{
-            console.log("success: ",response)
-            if(response.data.token){
+            if(response.data.token){ 
+            console.log("API HIT: Login success")
                 localStorage.token = response.data.token
                 props.dispatch({
                     type:"LOGIN",
@@ -56,7 +52,8 @@ function Login (props){
             setMessage({
                 success: "Login Successfull"
             });
-            props.history.push('/')
+            setTimeout(()=>{ props.history.push('/') }, 2000);
+            
          props.set(true)
          props.userName(user.name)
         }
