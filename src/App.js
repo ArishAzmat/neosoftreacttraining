@@ -10,6 +10,7 @@ import CakeDetails from './components/CakeDetails';
 import Search from './components/search';
 import Cart from './components/cart';
 import Checkout from './components/checkout';
+import Resetpassword from './components/resetPassword';
 import axios from "axios";
 import { connect } from 'react-redux';
 import mart from './reduxstore/store'; 
@@ -57,6 +58,7 @@ function App() {
         <Route exact path='/search' component={Search}></Route>
         <Route exact path='/cart' component={Cart}></Route>
         <Route path='/checkout' component={Checkout}></Route> 
+        <Route path='/resetpassword' component={Resetpassword}></Route> 
       </Router>
           {/* <Login userName={setName} checkLogin={login} set={setlogin}/></Router> */}
     </div>

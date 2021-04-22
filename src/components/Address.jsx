@@ -5,7 +5,7 @@ function Address(props) {
     let addressForm = (e)=>{
         e.preventDefault()
     }
-    return (
+    return ( 
         <div className="col-md-10">
              <form className="form-group" style={{textAlign:"left"}} onSubmit={addressForm}> 
             <input style={{margin:"20px"}} value={props?.user?.name} readOnly type="text" className="form-control" placeholder="Enter Your Name"/> 

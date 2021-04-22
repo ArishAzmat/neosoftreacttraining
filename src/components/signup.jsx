@@ -13,44 +13,29 @@ class Signup extends Component{
         }
     getEmail = (event)=>{ 
         this.user.email = event.target.value
-        // if(event.target.value  === 'some@email.com'){
-        //     this.setState({
-        //         errorEmail : ''
-        //     });
-        // }else{
-        //     this.setState({
-        //         errorEmail : 'Please enter a valid email'
-        //     });
-        // }
-        //console.log(event.target.value);
     }
     getPassword = (event)=>{ 
         this.user.password = event.target.value
-    //    if(event.target.value === '123'){
-    //     this.setState({
-    //         errorPassword : ""
-    //     });
-    //    }else{
-    //     this.setState({
-    //         errorPassword : "Please Enter a valid Password"
-    //     });
-    //    }
+    }
+    validateEmail = (email)=>{
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
     }
     register = ()=>{   
         //console.log(this.user)
         if(!this.user.email || !this.user.password){
             this.setState({
-                errorMessage : 'Please fill all details'
+                errorMessage : 'All field are required'
             })
         }
-        // else if (this.user.email !== 'some@email.com' && this.user.password !== '123' ){
-        //     this.setState({
-        //         errorMessage : 'Email or Password is invalid'
-        //     })
-        // }
+        else if (!this.validateEmail(this.user.email)){
+            this.setState({
+                errorMessage : 'A Valid Email Please'
+            })
+        }
         else{
             this.setState({
-                errorMessage : ''
+                errorMessage : null
             })
             axios({
                 url:"https://apibyashu.herokuapp.com/api/register",
@@ -91,9 +76,9 @@ class Signup extends Component{
                  <input placeholder="Enter Your Password" className="form-control" type="text" onChange={this.getPassword}/>
                  <span  className="alert">{this.state.errorPassword}</span>
                </form>
-               {this.state.errorMessage && <span  className="alert-danger">{this.state.errorMessage}</span> }
+               {this.state.errorMessage && <span  className=" alert alert-danger">{this.state.errorMessage}</span> }
                
-               {this.state.Message && <span  className="alert-success">{this.state.Message}</span> }
+               {this.state.Message && <span  className="alert alert-success">{this.state.Message}</span> }
                 <button className="btn btn-secondary m-3" onClick={this.register}>register</button>
             </center>
         )

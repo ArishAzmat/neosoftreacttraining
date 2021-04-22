@@ -24,7 +24,7 @@ function Header (props){
       },(error)=>{
         console.log("error",error)
       })
-   },[props.updatecart])
+   },[props.updatecart,localStorage.token])
   var [search, setSearch] = useState('') 
   let searchq = (event)=>{ 
       setSearch(event.target.value);

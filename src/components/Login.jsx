@@ -3,18 +3,15 @@ import {Link, withRouter} from 'react-router-dom';
 import axios from "axios";
 import { connect } from 'react-redux';
 function Login (props){
+    function validateEmail(email) 
+    {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
     
     var user = {}
     var [user, setUser] = useState({})
     var [message, setMessage] = useState({})
-    // let getName = (event)=>{ 
-    //     setUser({
-    //         ...user,
-    //             name : event.target.value
-    //         });
-    //         // console.log(event.target.value);
-    //         user.name=event.target.value;
-    //     }
    let getEmail = (event)=>{ 
         setUser({
             ...user,
@@ -30,10 +27,16 @@ function Login (props){
         }) 
     }
     let login =()=>{
+       
         console.log(user)
        if(!user.email || !user.password){
         setMessage({
-            error: "Please Fill all required fields"
+            error: "Enter Email And Password"
+        }); 
+       }
+       else if (!validateEmail(user.email)){
+        setMessage({
+            error:  `A Valid Email Please`
         }); 
        }
        else{
@@ -60,7 +63,7 @@ function Login (props){
         else{
             // console.log("asdsad");
             setMessage({
-                error: "Invalid Credentials"
+                error: "Your Email or Password is Incorrect"
             }); 
         }
         },(error)=>{
@@ -77,11 +80,13 @@ function Login (props){
        <form style={{width: "500px"}}>
           <h3>Login</h3>
          {/* <input placeholder="Enter Your Name" className="form-control" type="text" onChange={getName}/> <br/> */}
-         <input placeholder="Enter Your Email" className="form-control" type="text" onChange={getEmail}/> <br/>
-          <input placeholder="Enter Your Password" className="form-control" type="text" onChange={getPassword}/> 
+         <input placeholder="Enter Your Email" autoComplete="on" className="form-control" type="text" onChange={getEmail}/> <br/>
+          <input placeholder="Enter Your Password" className="form-control" type="password" onChange={getPassword}/> 
         </form>
-           <Link to="signup"> <a href="#">Don't have an account Signup</a></Link>
+           <Link to="/signup"> <a href="#">Don't have an account Signup</a></Link>
          <button className="btn btn-secondary m-3" onClick={login}>Login</button>
+         <Link to="/resetpassword"> <a href="#">Forgot Password?</a></Link>
+         <br></br>
          {message.success && <span className="alert alert-success">{message.success}</span>}
             {message.error && <span className="alert alert-danger">{message.error}</span>}
      </center>);
