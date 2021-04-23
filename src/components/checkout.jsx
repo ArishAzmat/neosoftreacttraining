@@ -41,7 +41,7 @@ function Checkout(props) {
                   
                    <table className="table side-bar-box">
                        <tr>
-                           <th>
+                           <th> 
                                <button  className="btn btn-dark form-control" style={{ textDecoration: 'none',color: '#fff' }}   onClick={()=>NextRoute('/')}>
                                    Summary
                                </button>
