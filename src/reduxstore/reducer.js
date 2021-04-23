@@ -1,3 +1,4 @@
+
 var demo = function(state = null, action){
     switch(action.type){
         case "LOGIN":{
@@ -27,10 +28,11 @@ var demo = function(state = null, action){
             state['updatecart'] = action.payload
             return state
         } 
-        case "SESSION":{
+        case "CHECKOUT":{
             // console.log("redux Session")
             state = {...state}   
-            state['session'] = action.payload
+            state['isaddress'] = true
+            state['address'] = action.payload
             return state
         } 
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 function Header (props){ 
-  // console.log(props.updatecart)
+  // console.log(props.updatecart)R
   useEffect(()=>{
     axios({
         method:'post',

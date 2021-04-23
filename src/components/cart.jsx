@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 function Cart(props) { 
     let [removed, setRemoved] = useState(false)
-    let removefromcart = (data) => { 
+    let removefromcart = (e,data) => {
+      // console.log("eeeee",e)
+      // e.closest('tr').fadeOut()
         axios({
             method:'post',
             url:"https://apibyashu.herokuapp.com/api/removecakefromcart",
@@ -15,7 +17,7 @@ function Cart(props) {
             setRemoved(true)
             if(response.data.message === "Removed  item from cart"){
               //resetting cart
-
+              
               props.dispatch({
                 type:"UPDATE-CART",
                 payload:false
@@ -26,7 +28,6 @@ function Cart(props) {
           })
     }
     // var [cart, setCart] = useState()
-   
     return (
         <div> 
             <h2>Cart</h2>
@@ -45,13 +46,13 @@ function Cart(props) {
                             <td><img src={each.image} alt={each.name} style={{width:"100px"}}/></td>
                             <td>{each.price}</td>
                             <td>{each.quantity}</td>
-                            <td><button onClick={()=>removefromcart(each.cakeid)} className="btn btn-danger">X</button></td>
+                            <td><button onClick={(e)=>removefromcart(e,each.cakeid)} className="btn btn-danger">X</button></td>
                         </tr>
                     )
                 })} 
             </table>
-            {/* {props.isLoggedin?   :''} */}
-              <Link to="/checkout"><button className="btn btn-success">Checkout</button></Link>
+            {props.isLoggedin?  <Link to="/checkout"><button className="btn btn-success">Checkout</button></Link> :null}
+              
              
         </div>
     )

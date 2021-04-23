@@ -1,25 +1,21 @@
-import Header from './header';
+ 
 import Footer from './Footer';
 import Slider from './slider';
-import Card from './card';
-import Signup from './signup';
-import Login from './Login';
+import Card from './card';  
 import CakeDetails from './CakeDetails';
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import Search from './search';
 function Home(params) {
   // console.log(params)
-  let [cakes, setCakes] = useState({})
-  let [searchCake, setSearchCake] = useState({})
-  let [login, setlogin] = useState(false);
+  let [cakes, setCakes] = useState({}) 
   useEffect(() => {
    axios({
       url: "https://apibyashu.herokuapp.com/api/allcakes",
       method: "get",
     }).then((response) => {
       setCakes(response.data.data)
-      // console.log(response.data.data)
+      // console.log(response.data.data) A
     }, (error) => {
       console.log(error)
     }) 

@@ -2,6 +2,7 @@ import React from 'react';
 
 var slider1 = "images/slider1.jpg";
 var height = {height:"500px"};
+// console.log("S")
 function Slider () {
         return ( <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
         <div className="carousel-inner">

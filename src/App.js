@@ -1,7 +1,6 @@
 import './App.css';
 import Home from './components/Home';
-import Header from './components/header';
-import Slider from './components/slider';
+import Header from './components/header'; 
 import Login from './components/Login';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import {useState} from 'react';
@@ -11,8 +10,7 @@ import Search from './components/search';
 import Cart from './components/cart';
 import Checkout from './components/checkout';
 import Resetpassword from './components/resetPassword';
-import axios from "axios";
-import { connect } from 'react-redux';
+import axios from "axios"; 
 import mart from './reduxstore/store'; 
 const baseUrl = 'https://apibyashu.herokuapp.com/api/'
 if(localStorage.token){
@@ -40,17 +38,15 @@ if(localStorage.token){
   })
 }
 function App() {
- 
-  let [details, setDetails] = useState({}) 
-  let [cakes, setCakes] = useState({})
-  let [searchCake, setSearchCake] = useState({})
+    
   let [login, setlogin] = useState(false);
   let [name, setName] = useState('');
   
   return (
     <div className="App">
       <Router>
-      <Header getSearchData={setSearchCake} userName={name} checkLogin={login} changeLogout={setlogin,setlogin}/>
+      <Header userName={name} checkLogin={login}/>
+      {/* <Header userName={name} checkLogin={login} changeLogout={setlogin,setlogin}/> */}
         <Route exact path='/' component={Home}></Route>
         <Route exact path='/signup' component={Signup}></Route>
         <Route exact path='/login' ><Login userName={setName} checkLogin={login} set={setlogin}/></Route>

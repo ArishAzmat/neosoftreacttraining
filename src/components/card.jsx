@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 function Card (props) { 
     let data = ()=>{
-          // axios({
+          // axios({ S
   //   url:"http://apibyashu.herokuapp.com/api/allcakes",
   //   method:"get", 
   // }).then((response)=>{

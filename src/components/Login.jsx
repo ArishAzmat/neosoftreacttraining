@@ -76,7 +76,6 @@ function Login (props){
    
     return ( 
        <center>
-            
        <form style={{width: "500px"}}>
           <h3>Login</h3>
          {/* <input placeholder="Enter Your Name" className="form-control" type="text" onChange={getName}/> <br/> */}

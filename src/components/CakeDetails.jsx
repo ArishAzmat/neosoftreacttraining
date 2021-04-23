@@ -14,6 +14,7 @@ function CakeDetails(props) {
       if(response.data.message == "Added to cart"){
         // console.log(response.data.message) 
         //resetting cart
+        document.getElementById('addtocart').innerHTML = "Added"
         props.dispatch({
           type:"UPDATE-CART",
           payload:false
@@ -50,7 +51,7 @@ function CakeDetails(props) {
           <div className="row">
             <div className="col-md-6">
             <img className="singleimage" src={details.image? details.image 
-              : 'https://www.jqueryscript.net/images/jQuery-Ajax-Loading-Overlay-with-Loading-Text-Spinner-Plugin.jpg'}/>
+              : '/images/loader.gif'}/>
             </div>
             <div className="col-md-6">
             <h1 className="display-4">{details.name? details.name: 'Loading...'}</h1>
@@ -59,13 +60,16 @@ function CakeDetails(props) {
        
         <ul className="cart-details-list">
           <li className="m-2"> <b>Price: </b>  ${details.price?details.price:'Loading...'} </li>
-        
+          <hr className="my-3"/> 
         <li className="m-2"><b>Description: </b>{details.description} </li>
+        <hr className="my-3"/> 
         <li className="m-2"><b>Eggless: </b> {details.eggless === true? 'Yes' : 'No'} </li>
+        <hr className="my-3"/> 
         <li className="m-2"><b>ratings: </b> <span className="rating">{details.ratings}</span> </li>
+        <hr className="my-3"/> 
         <li className="m-2"><b>flavour: </b> {details.flavour} </li>
         </ul>
-        <button onClick={()=>addtocart(details)} className="btn btn-success">Add to Cart</button>
+        <button id="addtocart" onClick={()=>addtocart(details)} className="btn btn-success">Add to Cart</button>
             </div>
           </div>
        
