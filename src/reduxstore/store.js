@@ -1,6 +1,16 @@
-import {createStore} from "redux"
+import {createStore, applyMiddleware} from "redux"
 import demo from './reducer'
+import {logger} from "./middleware"
+import thunk from "redux-thunk"
+import createSaga from "redux-saga"
+import rootSaga from "./sagas"
 
-var store = createStore(demo)
+var sagaMiddleware = createSaga()
 
-export default store
+var middleware = applyMiddleware(logger, thunk)
+
+
+
+
+export default createStore(demo, middleware)
+// sagaMiddleware.run(rootSaga)

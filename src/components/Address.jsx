@@ -1,7 +1,9 @@
+import axios from 'axios';
 import {useState} from 'react';
 import { connect } from "react-redux";
 function Address(props) {
-    console.log("adddd", props.address)
+   
+    // console.log("adddd", props.address)
     let [errors, setErrors] = useState({})
     let addressForm = (e)=>{
         e.preventDefault() 
@@ -11,13 +13,22 @@ function Address(props) {
             setErrors(error)
         }
         else {
-            props.dispatch({
-                type:"CHECKOUT",
-                payload:{name:fields.name.value,
+                var data = {
+                    name:fields.name.value,
                     phone:fields.phone.value,
                     address:fields.address.value,
                     pincode:fields.pincode.value,
-                    city:fields.city.value}
+                    city:fields.city.value,
+                    // cakes:props.cart,
+                    // price:totalPrice,
+                  }
+            props.dispatch({
+                type:"ADDRESS",
+                payload:data
+            })
+            props.dispatch({
+                type:"CHECKOUT",
+                payload:'payment'
             })
             props.history.push('/checkout/payment')
         }
@@ -52,7 +63,8 @@ function Address(props) {
 export default connect(function(state,props){
     return{
         user:state?.user,
-        address:state?.address
+        address:state?.address,
+        cart:state?.cart.data
     }
 })(Address)
 

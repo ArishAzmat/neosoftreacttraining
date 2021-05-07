@@ -11,7 +11,7 @@ function Home(params) {
   let [cakes, setCakes] = useState({}) 
   useEffect(() => {
    axios({
-      url: "https://apibyashu.herokuapp.com/api/allcakes",
+      url: process.env.REACT_APP_BASE_URL+"allcakes",
       method: "get",
     }).then((response) => {
       setCakes(response.data.data)

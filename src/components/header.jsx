@@ -7,7 +7,7 @@ function Header (props){
   useEffect(()=>{
     axios({
         method:'post',
-        url:"https://apibyashu.herokuapp.com/api/cakecart",
+        url:"https://apifromashu.herokuapp.com/api/cakecart",
         headers:{authtoken:localStorage.token},
       }).then((response)=>{ 
         console.log("API HIT: Cart success")
@@ -24,7 +24,7 @@ function Header (props){
       },(error)=>{
         console.log("error",error)
       })
-   },[props.updatecart,localStorage.token])
+   },[props.updatecart,props.loginstatus])
   var [search, setSearch] = useState('') 
   let searchq = (event)=>{ 
       setSearch(event.target.value);
@@ -49,7 +49,8 @@ function Header (props){
     // console.log(props)
   } 
         return ( <nav className="navbar navbar-expand-lg navbar-light bg-light">
-       <Link to="/"> <a className="navbar-brand btn btn-outline" href="#">Justice CakeShop  {props.user && <span>, Welcome {props.user}</span>}</a> </Link>
+       <Link to="/"> <a className="navbar-brand btn btn-outline" href="#">Justice CakeShop  </a> </Link>
+       <Link to="/profile"><a className="navbar-brand btn btn-outline">{props.user && <span>Welcome {props.user}</span>}</a></Link> 
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>

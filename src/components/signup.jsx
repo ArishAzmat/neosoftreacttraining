@@ -38,7 +38,7 @@ class Signup extends Component{
                 errorMessage : null
             })
             axios({
-                url:"https://apibyashu.herokuapp.com/api/register",
+                url:"https://apifromashu.herokuapp.com/api/register",
                 method:"post",
                 data:this.user,
             }).then((response)=>{ 

@@ -5,11 +5,12 @@ import Address from "./Address";
 import Payment from  "./Payment"
 import CartSummary from "./CartSummary";
 import Order from "./Order";
+import OrderView from "./orderview";
 import { connect } from "react-redux";
 function Checkout(props) { 
-    let title = "Checkout"
+    let title = "Summary"
     let url = props.match.url
-    console.log("ssss",props.isaddress)
+    console.log("ssss",props)
     if(props?.isLoggedin){
         // console.log("logged in")
     }
@@ -59,14 +60,14 @@ function Checkout(props) {
                         </tr>
                        <tr>
                            <th>
-                           <button disabled={props.isaddress? false: true} className="btn btn-dark form-control" style={{ textDecoration: 'none',color: '#fff' }}   onClick={()=>NextRoute('/payment')}>
+                           <button disabled={props.page? false: true} className="btn btn-dark form-control" style={{ textDecoration: 'none',color: '#fff' }}   onClick={()=>NextRoute('/payment')}>
                                    Payment
                                </button>
                             </th>
                         </tr> 
                         <tr>
                            <th>
-                           <button disabled={props.isaddress? false: true} className="btn btn-dark form-control" style={{ textDecoration: 'none',color: '#fff' }}   onClick={()=>NextRoute('/order')}>
+                           <button className="btn btn-dark form-control" style={{ textDecoration: 'none',color: '#fff' }}   onClick={()=>NextRoute('/order')}>
                                    Order
                                </button>
                             </th>
@@ -78,6 +79,7 @@ function Checkout(props) {
                 <Route exact path={props.match.path+"/address"} component={Address}></Route>
                 <Route exact path={props.match.path+"/payment"} component={Payment}></Route>
                 <Route exact path={props.match.path+"/order"} component={Order}></Route>
+                <Route exact path={props.match.path+'/order/:orderid'} component={OrderView}></Route>
             </div>
             </div>
         </div>
@@ -87,6 +89,6 @@ export default connect(function(state,props){
     return {
         isLoggedin:state?.isLoggedin,
         address:state?.address,
-        isaddress:state?.isaddress,
+        page:state?.page,
     }
 })(Checkout)

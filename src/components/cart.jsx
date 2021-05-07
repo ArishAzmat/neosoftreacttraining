@@ -6,10 +6,10 @@ function Cart(props) {
     let [removed, setRemoved] = useState(false)
     let removefromcart = (e,data) => {
       // console.log("eeeee",e)
-      // e.closest('tr').fadeOut()
+      // this.closest('tr').fadeOut()
         axios({
             method:'post',
-            url:"https://apibyashu.herokuapp.com/api/removecakefromcart",
+            url:process.env.REACT_APP_BASE_URL+"removecakefromcart",
             headers:{authtoken:localStorage.token},
             data:{cakeid:data}
           }).then((response)=>{  
@@ -31,6 +31,7 @@ function Cart(props) {
     return (
         <div> 
             <h2>Cart</h2>
+            {props.cart?.data?.length > 0?
             <table className="table table-stripped">
                 <tr>
                     <th>Cake Name</th>
@@ -51,7 +52,10 @@ function Cart(props) {
                     )
                 })} 
             </table>
-            {props.isLoggedin?  <Link to="/checkout"><button className="btn btn-success">Checkout</button></Link> :null}
+             : <div className="alert alert-info">
+               No item in Cart
+               </div>}
+            {props.cart?.data?.length > 0 && props.isLoggedin?  <Link to="/checkout"><button className="btn btn-success">Checkout</button></Link> :null}
               
              
         </div>

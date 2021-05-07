@@ -13,7 +13,7 @@ function ResetPassword(props){
         }
         else{
             axios({
-                url:"https://apibyashu.herokuapp.com/api/recoverpassword",
+                url:"https://apifromashu.herokuapp.com/api/recoverpassword",
                 method:"post",
                 data:{email:email},
             }).then((response)=>{
