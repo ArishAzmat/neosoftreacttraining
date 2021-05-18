@@ -12,7 +12,14 @@ export function loginUser (user, url){
             url:url+"login",
             data:user
         }).then((response)=>{
-            if(response.data.token){
+
+            console.log("hmmmm working....",response)
+            if(response.data.message === "Invalid Credentials"){
+                dispatch({
+                    type:"LOGIN_FAILURE",
+                })
+            }
+           if(response.data.token){
                 // console.log("hmmmm working....",response)
                 localStorage.setItem('token', response.data.token);
                 dispatch({

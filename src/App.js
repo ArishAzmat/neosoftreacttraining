@@ -2,7 +2,7 @@ import './App.css';
 import Home from './components/Home';
 import Header from './components/header'; 
 import Login from './components/Login';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route , HashRouter} from 'react-router-dom';
 import {useState} from 'react';
 import Signup from './components/signup';
 import CakeDetails from './components/CakeDetails';
@@ -50,7 +50,7 @@ function App(props) {
   
   return (
     <div className="App">
-      <Router>
+      <HashRouter basename='/react/'>
       <Header userName={name} checkLogin={login}/>
       {/* <Header userName={name} checkLogin={login} changeLogout={setlogin,setlogin}/> */}
         <Route exact path='/' component={Home}></Route>
@@ -71,7 +71,7 @@ function App(props) {
               <SuspendedProfile/>
           </Suspense>
         </Route>
-      </Router>
+      </HashRouter>
           {/* <Login userName={setName} checkLogin={login} set={setlogin}/></Router> */}
     </div>
   );
